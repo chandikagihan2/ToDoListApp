@@ -43,6 +43,14 @@ li {
     padding: 12px;
     margin-top: 10px;
     background-color: AliceBlue;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+li button {
+    min-width: 80px;
+    padding: 12px 15px;
 }
 
 .completed {
