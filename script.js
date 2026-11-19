@@ -13,41 +13,49 @@ addTaskButton.addEventListener('click', function () {
     }
 
     const li = document.createElement('li');
-    li.textContent = taskText;
 
-    li.addEventListener('click', function () {
-        li.classList.toggle('completed');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    const taskTextSpan = document.createElement('span');
+    taskTextSpan.textContent = taskText;
+
+    checkbox.addEventListener('change', function () {
+        taskTextSpan.classList.toggle('completed');
     });
 
-    const editButton = document.createElement('button');
+    li.appendChild(checkbox);
+    li.appendChild(taskTextSpan);
+    
 
-    editButton.textContent = 'Edit';
+const editButton = document.createElement('button');
 
-    editButton.addEventListener('click', function (event) {
-        event.stopPropagation();
+editButton.textContent = 'Edit';
 
-        const newTask = prompt('Edit your task:', taskText);
+editButton.addEventListener('click', function (event) {
+    event.stopPropagation();
 
-        if (newTask !== null && newTask.trim() !== '') {
-            li.firstChild.textContent = newTask;
-        }
-    });
+    const newTask = prompt('Edit your task:', taskTextSpan.textContent);
+    if (newTask !== null && newTask.trim() !== '') {
+        taskTextSpan.textContent = newTask;
+    }
+});
 
-    li.appendChild(editButton);
+li.appendChild(editButton);
 
-    const deleteButton = document.createElement('button');
+const deleteButton = document.createElement('button');
 
-    deleteButton.textContent = 'Delete';
+deleteButton.textContent = 'Delete';
 
-    deleteButton.addEventListener('click', function (event) {
-        event.stopPropagation();
-        li.remove();
-    });
+deleteButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    li.remove();
+});
 
-    li.appendChild(deleteButton);
+li.appendChild(deleteButton);
 
-    taskList.appendChild(li);
+taskList.appendChild(li);
 
-    taskInput.value = '';
+taskInput.value = '';
 
 });
