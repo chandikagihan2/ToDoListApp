@@ -19,6 +19,22 @@ addTaskButton.addEventListener('click', function () {
         li.classList.toggle('completed');
     });
 
+    const editButton = document.createElement('button');
+
+    editButton.textContent = 'Edit';
+
+    editButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+
+        const newTask = prompt('Edit your task:', taskText);
+
+        if (newTask !== null && newTask.trim() !== '') {
+            li.firstChild.textContent = newTask;
+        }
+    });
+
+    li.appendChild(editButton);
+
     const deleteButton = document.createElement('button');
 
     deleteButton.textContent = 'Delete';
